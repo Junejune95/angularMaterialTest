@@ -1,0 +1,65 @@
+@use "~@angular/material/theming" as material;
+
+$app-banner-density-config: (
+    height: (
+        default: 120px,
+        maximun: 150px,
+        minimum: 90px,
+    ),
+);
+
+@mixin app-banner-density($density-config) {
+    $density-scale: material.mat-get-density-config($density-config);
+    $height: material.mat-private-density-prop-value($app-banner-density-config, $density-scale, height);
+
+    app-banner {
+        min-height: $height;
+    }
+}
+@mixin app-banner-typography($typography-config) {
+    app-banner {
+        .heading {
+            @include material.mat-typography-level-to-styles($typography-config, title);
+        }
+
+        .message {
+            @include material.mat-typography-level-to-styles($typography-config, body-l);
+        }
+    }
+}
+
+@mixin app-banner-theme($theme) {
+    $theme-color: material.mat-get-color-config($theme);
+    $typography: material.mat-get-typography-config($theme);
+    // $density: material.mat-get-density-config($theme);
+
+    $success-color-palette: map-get($theme, success);
+    $info-color-palette: map-get($theme, info);
+    $warn-color-palette: map-get($theme, warn);
+    $backgrounds: map-get($theme-color, background);
+
+    // @if $density !=null {
+    //     @include app-banner-density($density);
+    // }
+
+    @if $typography !=null {
+        @include app-banner-typography($typography);
+    }
+
+    app-banner {
+        @include material.mat-elevation(2,material.mat-color($success-color-palette),0.3);
+
+        background-color: material.mat-color($backgrounds, card);
+        &.app-banner-success {
+            background-color: material.mat-color($success-color-palette, lighter);
+        }
+
+        &.app-banner-info {
+            background-color: material.mat-color($info-color-palette, lighter);
+        }
+
+        &.app-banner-warn {
+            background-color: material.mat-color($warn-color-palette, lighter);
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@use "~@angular/material/theming" as material;
+@use "../app/banner/banner.component.scss-theme.scss" as banner;
+@use "../app/app.component.scss-theme.scss" as root;
+@use "sass:map";
+
+// Extra colors
+$workshop-success: material.mat-palette(material.$mat-green);
+$workshop-info: material.mat-palette(material.$mat-blue);
+
+$workshop-typography: material.mat-typography-config(
+    $font-family: "'Open sans',sans-serif",
+    $display-4: material.mat-typography-level(95px, 95px, 300, $letter-spacing: -0.05em),
+);
+
+@function apply-extra-colors($theme) {
+    @return map.deep-merge(
+        $theme,
+        (
+            success: $workshop-success,
+            info: $workshop-info,
+            color: (
+                success: $workshop-success,
+                info: $workshop-info,
+            ),
+        )
+    );
+}
+
+@mixin create-theme($workshop-theme) {
+    @include material.angular-material-theme($workshop-theme);
+
+    // @include material.mat-core-theme($workshop-theme);
+    // @include material.mat-select-theme($workshop-theme);
+    // @include material.mat-toolbar-theme($workshop-theme);
+    // @include material.mat-button-theme($workshop-theme);
+    // @include material.mat-card-theme($workshop-theme);
+    // @include material.mat-form-theme($workshop-theme);
+
+    @include banner.app-banner-theme($workshop-theme);
+    @include root.app-root-theme($workshop-theme);
+}

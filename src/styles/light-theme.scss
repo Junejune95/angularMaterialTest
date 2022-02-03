@@ -1,0 +1,21 @@
+@use "~@angular/material/theming" as material;
+@use "./common.scss";
+
+$workshop-primary: material.mat-palette(material.$mat-cyan, 500, 200, 700);
+$workshop-accent: material.mat-palette(material.$mat-pink, A300, A200);
+
+$workshop-theme: material.mat-light-theme(
+    (
+        color: (
+            primary: $workshop-primary,
+            accent: $workshop-accent,
+        ),
+        // typography: common.$workshop-typography,
+        density:minimum
+    )
+);
+
+$workshop-theme: common.apply-extra-colors($workshop-theme);
+
+//Generate theme
+@include common.create-theme($workshop-theme);

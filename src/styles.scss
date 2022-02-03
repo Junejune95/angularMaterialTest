@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@use "~@angular/material/theming" as material;
+
+@use './styles/common.scss';
+
+@use "sass:map";
+// @use "./styles/dark-theme.scss" as dark;
+// @use "./styles/light-theme.scss" as light;
+// @use "./app/banner/banner.component.scss-theme.scss" as banner;
+// @use "./app/app.component.scss-theme.scss" as root;
+
+@include material.mat-core();
+// @include material.mat-ripple();
+// @include material.cdk-a11y();
+// @include material.cdk-overlay();
+// @include material.cdk-text-formfield();
+// @mixin create-theme($workshop-theme) {
+//     @include material.angular-material-theme($workshop-theme);
+//     @include banner.app-banner-theme($workshop-theme);
+//     @include root.app-root-theme($workshop-theme);
+// }
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// .dark-theme{
+//     @include create-theme(dark.$workshop-theme)
+// }
+
+// .light-theme{
+//     @include create-theme(light.$workshop-theme)
+// }
